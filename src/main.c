@@ -12,15 +12,17 @@
 
 #include "push_swap.h"
 
-int main(int ac, char **av) {
-    char **args;
+int	main(int ac, char **av)
+{
+	char	**args;
 
-    if (ac <2)
-        return 0;
-    args = join_and_split(ac, av);
-    while (*args != NULL) {
-        printf("%s\n", *args);
-        args++;
-    }
-    return 0;
+	if (ac < 2)
+		return (0);
+	args = join_and_split(ac, av);
+	while (*args != NULL)
+	{
+		printf("%s\n", *args);
+		args++;
+	}
+	return (0);
 }

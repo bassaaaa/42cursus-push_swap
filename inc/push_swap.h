@@ -13,8 +13,8 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "../libft/libft.h"
-#include <stdio.h>
+# include "../libft/libft.h"
+# include <stdio.h>
 
 char	**join_and_split(int ac, char **av);
 void	skip_space(const char **str);

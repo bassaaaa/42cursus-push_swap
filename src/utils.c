@@ -98,4 +98,3 @@ long	ft_strtol(const char *str)
 	}
 	return (result);
 }
-
