@@ -1,6 +1,8 @@
 *.out
 *.o
+*.a
 
 .DS_Store
 
 checker_Mac
+checker_linux
