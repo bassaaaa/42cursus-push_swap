@@ -1,173 +1,195 @@
-# 42 C Project Template
+*This project has been created as part of the 42 curriculum by tsito, <partner-login>.*
 
-42 の C 課題用テンプレートです。
+# push_swap
 
-このリポジトリは、C 課題を始めるときの最低限の土台として使うことを想定しています。Makefile と GitHub Actions の雛形を含みますが、各課題の要件を自動で満たすものではありません。
+## Description
 
-## 重要な注意
+`push_swap` は、整数列を 2 つのスタック `a` / `b` と限られた命令だけで昇順に並べる 42 のアルゴリズム課題である。
 
-課題要件に `README.md` の作成や内容指定がある場合は、必ずその課題要件に従って `README.md` を書いてください。
+プログラムは、引数として受け取った整数列を解析し、スタック `a` の先頭に最小値が来るように並べ替えるための命令列を標準出力へ出力する。目標は、正しくソートするだけでなく、出力する操作数をできるだけ少なくすることだ。
 
-本テンプレートを使用した結果、レビュー、機械採点、Norminette、提出チェック、その他の評価に通らなかったとしても、テンプレート作成者は一切責任を負いません。提出前の確認責任は、使用者本人にあります。
+この課題では、通常の配列ソートではなく、Push_swap 命令として出力される操作数を基準に計算量を考える。入力の乱れ具合によって適切な戦略を選ぶことが求められる。
 
-42 の課題では、ファイル名、ディレクトリ構成、Makefile のターゲット、提出対象、使用可能な関数、禁止事項が課題ごとに異なります。テンプレートをそのまま使わず、必ず subject を読み、課題ごとに調整してください。
+## Subject Summary
 
-## 使い方
+### 共通要件
 
-1. このテンプレートからリポジトリを作成する
-2. 課題の subject を読む
-3. 必要なファイルとディレクトリだけを配置する
-4. `Makefile` を課題要件に合わせて書き換える
-5. ローカルでコンパイル、Norminette、動作確認を行う
-6. 提出前に subject の提出条件と差分を確認する
+- C 言語で実装する。
+- Norm に従う。bonus ファイルも Norm チェック対象。
+- セグメンテーションフォルト、bus error、double free などで異常終了してはいけない。
+- 必要なヒープ領域はすべて解放し、メモリリークを出してはいけない。
+- `Makefile` は `cc` と `-Wall -Wextra -Werror` でコンパイルする。
+- `Makefile` には少なくとも `$(NAME)`, `all`, `clean`, `fclean`, `re` を用意する。
+- 不要な再リンクをしてはいけない。
+- libft の使用は許可されている。使う場合は `libft/` にソースと Makefile を配置し、このプロジェクトの Makefile からビルドする。
+- グローバル変数は禁止。
 
-## ディレクトリ構成
+### グループ要件
 
-このテンプレートは、特定の課題構成を強制しません。
+- この課題は 2 人ちょうどで取り組むグループ課題。
+- 2 人とも意味のある貢献を行い、実装したすべてのアルゴリズムを理解している必要がある。
+- README に両者の貢献内容を明記する。
+- defense では両者が出席し、コードの任意の部分を説明できる必要がある。
 
-課題によっては、以下のような指定があり得ます。
+## Stack Rules
 
-- ルート直下に `.c` / `.h` / `Makefile` を置く
-- `src/` や `includes/` などのディレクトリを使う
-- bonus 用ファイルを別名または別ディレクトリに分ける
-- 提出してよいファイルが限定されている
+初期状態では、スタック `a` に重複のない正負の整数が入り、スタック `b` は空である。最終的に `a` を昇順にし、`b` を空にする。
 
-ディレクトリ名やファイル配置は、必ず課題要件に合わせてください。
+使用できる命令は次の 11 種類である。
 
-## Makefile
+| 命令 | 内容 |
+| --- | --- |
+| `sa` | `a` の先頭 2 要素を交換する。要素が 1 個以下なら何もしない。 |
+| `sb` | `b` の先頭 2 要素を交換する。要素が 1 個以下なら何もしない。 |
+| `ss` | `sa` と `sb` を同時に行う。 |
+| `pa` | `b` の先頭要素を `a` の先頭へ移す。`b` が空なら何もしない。 |
+| `pb` | `a` の先頭要素を `b` の先頭へ移す。`a` が空なら何もしない。 |
+| `ra` | `a` を上方向に 1 つ回転し、先頭要素を末尾へ送る。 |
+| `rb` | `b` を上方向に 1 つ回転し、先頭要素を末尾へ送る。 |
+| `rr` | `ra` と `rb` を同時に行う。 |
+| `rra` | `a` を下方向に 1 つ回転し、末尾要素を先頭へ送る。 |
+| `rrb` | `b` を下方向に 1 つ回転し、末尾要素を先頭へ送る。 |
+| `rrr` | `rra` と `rrb` を同時に行う。 |
 
-`Makefile` は雛形です。課題ごとに必ず見直してください。
+## Instructions
 
-確認する項目の例:
+### Build
 
-- `NAME` が課題で指定された成果物名になっているか
-- ライブラリ課題なら `.a` を作る構成になっているか
-- 実行ファイル課題なら実行ファイルを作る構成になっているか
-- `SRCS` に必要なソースファイルがすべて含まれているか
-- `INCDIR` がヘッダーファイルの配置と合っているか
-- `all`, `clean`, `fclean`, `re` など、課題で求められるターゲットがあるか
-- bonus が必要な場合、`bonus` ターゲットの要件を満たしているか
+```sh
+make
+```
 
-テンプレートの Makefile は、すべての課題にそのまま使えるものではありません。
+### Run
 
-## GitHub Actions
+```sh
+./push_swap 2 1 3 6 5 8
+```
 
-このテンプレートには、簡単な GitHub Actions のフローが含まれています。
+出力は Push_swap 命令のみである。各命令は `\n` で区切り、それ以外は標準出力に出さない。
 
-- `format-c.yml`
-  - `c_formatter_42` をインストールします
-  - リポジトリ内の `.c` と `.h` をフォーマットします
-  - 差分があれば bot が commit / push します
-- `norminette.yml`
-  - `main` への push と pull request で実行されます
-  - 先にフォーマット用 workflow を呼び出します
-  - その後、`norminette` を実行します
-- `notify-discord.yml`
-  - `DISCORD_WEBHOOK_URL` secret が設定されている場合、結果を Discord に通知します
+### Strategy Selector
 
-Actions は補助ツールです。ローカル環境、校舎環境、提出システムの結果と完全に一致する保証はありません。
+`push_swap` は整数列に加えて、任意で戦略セレクタを受け取る。
 
-## 提出前チェック
+| オプション | 内容 |
+| --- | --- |
+| `--simple` | `O(n^2)` の単純アルゴリズムを強制する。 |
+| `--medium` | `O(n√n)` の中規模向けアルゴリズムを強制する。 |
+| `--complex` | `O(n log n)` の複雑アルゴリズムを強制する。 |
+| `--adaptive` | disorder を測定して適応戦略を使う。オプション省略時のデフォルト。 |
 
-提出前に少なくとも以下を確認してください。
+例:
 
-- subject の提出ファイル一覧と一致している
-- 不要なファイルやテストコードを提出対象に含めていない
-- `make`, `make clean`, `make fclean`, `make re` が期待通りに動く
-- `-Wall -Wextra -Werror` でコンパイルできる
-- Norminette に通る
-- メモリリーク、未初期化値、未定義動作がない
-- 許可されていない関数を使っていない
-- bonus の扱いが課題要件と一致している
+```sh
+./push_swap --adaptive 4 67 3 87 23
+./push_swap --simple 5 4 3 2 1
+./push_swap --complex 4 67 3 87 23
+```
 
-## この README について
+引数がない場合は何も表示せず終了する。
 
-この README はテンプレートの説明用です。課題で README の内容が指定されている場合は、この内容を残すのではなく、課題要件に合わせて書き直してください。
+### Error Handling
 
----
+次の場合は、標準エラーに `Error\n` を表示する。
 
-# 42 C Project Template
+- 整数ではない引数がある。
+- `int` の範囲外の値がある。
+- 重複した値がある。
+- セレクタやオプションの形式が不正。
 
-This is a template repository for 42 C projects.
+例:
 
-It is intended to provide a minimal starting point for C assignments. It includes a Makefile template and GitHub Actions workflows, but it does not automatically satisfy the requirements of every project.
+```sh
+./push_swap --adaptive 0 one 2 3
+./push_swap --simple 3 2 3
+```
 
-## Important Notes
+### Benchmark Mode
 
-If the assignment requires a `README.md` file or specifies what must be written in it, you must write `README.md` according to the assignment requirements.
+任意の `--bench` モードでは、ソート後に以下の情報を標準エラーへ表示する。操作列は通常どおり標準出力に出す。
 
-The template author assumes no responsibility if using this template causes you to fail a review, automated grading, Norminette, submission check, or any other evaluation. You are responsible for verifying your own submission before turning it in.
+- 計算した disorder。パーセント表記、小数 2 桁。
+- 使用した戦略名と理論計算量。
+- 合計操作数。
+- 各命令 `sa`, `sb`, `ss`, `pa`, `pb`, `ra`, `rb`, `rr`, `rra`, `rrb`, `rrr` の回数。
 
-In 42 projects, file names, directory structure, Makefile targets, submitted files, allowed functions, and forbidden items differ by assignment. Do not use this template as-is. Always read the subject and adjust the project accordingly.
+## Disorder Metric
 
-## Usage
+disorder は、初期スタック `a` がどれだけソート済み状態から離れているかを `0` から `1` の値で表す指標である。
 
-1. Create a repository from this template
-2. Read the assignment subject
-3. Place only the required files and directories
-4. Rewrite `Makefile` to match the assignment requirements
-5. Run compilation, Norminette, and behavior checks locally
-6. Before submission, verify the subject requirements and your final diff
+- すでに昇順なら `0`。
+- 可能な限り逆順に近い状態なら `1`。
+- その中間なら、一部は整っているが乱れがある状態。
 
-## Directory Structure
+計算方法は、すべてのペア `(i, j)` について `i < j` かつ `a[i] > a[j]` となる「逆転」を数え、全ペア数で割る。
 
-This template does not enforce a specific project structure.
+```text
+mistakes = 0
+total_pairs = 0
+for i from 0 to size(a) - 1:
+    for j from i + 1 to size(a) - 1:
+        total_pairs += 1
+        if a[i] > a[j]:
+            mistakes += 1
+disorder = mistakes / total_pairs
+```
 
-Depending on the assignment, you may be required to:
+disorder は、命令を 1 つも実行する前に測定する必要がある。
 
-- Place `.c` / `.h` / `Makefile` directly at the repository root
-- Use directories such as `src/` or `includes/`
-- Separate bonus files by file name or directory
-- Submit only a limited set of files
+## Algorithm Requirements
 
-Always follow the assignment requirements for directory names and file placement.
+この課題では、`push_swap` バイナリ内に 4 種類の戦略をすべて組み込む必要がある。計算量は C の内部処理ではなく、生成される Push_swap 操作数を基準に説明する。
 
-## Makefile
+### 1. Simple Algorithm: `O(n^2)`
 
-`Makefile` is only a template. Review and update it for each assignment.
+基準となる単純アルゴリズムである。例として、挿入ソート、選択ソート、バブルソート、最小値または最大値の抽出をスタック操作に適応したものが挙げられる。
 
-Examples of items to check:
+このリポジトリでは、実装後に選択した手法、操作数の上界、補助メモリ使用量をここへ記載する。
 
-- Whether `NAME` matches the required output name
-- Whether library projects build a `.a` archive
-- Whether executable projects build the required executable
-- Whether `SRCS` includes all required source files
-- Whether `INCDIR` matches the header file location
-- Whether required targets such as `all`, `clean`, `fclean`, and `re` are present
-- Whether the `bonus` target satisfies the assignment requirements, if bonus is required
+### 2. Medium Algorithm: `O(n√n)`
 
-The template Makefile is not suitable for every assignment as-is.
+中規模入力向けの戦略である。例として、`√n` 個のチャンクに分けるチャンクソート、ブロック分割、`√n` バケットによる bucket sort 適応、範囲ベースの戦略が挙げられる。
 
-## GitHub Actions
+このリポジトリでは、実装後にチャンク数または範囲設計、スタック `b` の使い方、操作数の上界をここへ記載する。
 
-This template includes simple GitHub Actions workflows.
+### 3. Complex Algorithm: `O(n log n)`
 
-- `format-c.yml`
-  - Installs `c_formatter_42`
-  - Formats `.c` and `.h` files in the repository
-  - Commits and pushes changes as a bot if formatting creates a diff
-- `norminette.yml`
-  - Runs on push and pull request to `main`
-  - Calls the formatting workflow first
-  - Runs `norminette` afterward
-- `notify-discord.yml`
-  - Sends the result to Discord if the `DISCORD_WEBHOOK_URL` secret is configured
+大きな入力向けの戦略である。例として、LSD/MSD radix sort、2 スタックを使った merge sort、partition を使った quick sort、heap sort、Binary Indexed Tree を利用した手法が挙げられる。
 
-Actions are helper tools only. Their results are not guaranteed to match your local environment, campus environment, or the official submission system.
+このリポジトリでは、実装後に採用した手法、正規化の有無、各パスで発生する操作数、補助メモリ使用量をここへ記載する。
 
-## Pre-Submission Checklist
+### 4. Custom Adaptive Algorithm
 
-Before submitting, check at least the following:
+disorder に応じて内部手法を切り替える独自の適応戦略である。subject では次の複雑度目標が指定されている。
 
-- The submitted files match the subject
-- Unnecessary files and test code are not included in the submission
-- `make`, `make clean`, `make fclean`, and `make re` work as expected
-- The project compiles with `-Wall -Wextra -Werror`
-- Norminette passes
-- There are no memory leaks, uninitialized values, or undefined behavior
-- No forbidden functions are used
-- Bonus handling matches the assignment requirements
+| disorder | 使用する内部戦略 | 要求される操作数計算量 |
+| --- | --- | --- |
+| `disorder < 0.2` | 低 disorder 向け | `O(n^2)` |
+| `0.2 <= disorder < 0.5` | 中 disorder 向け | `O(n√n)` |
+| `disorder >= 0.5` | 高 disorder 向け | `O(n log n)` |
 
-## About This README
+実装後、この README には以下を追記する。
 
-This README explains the template itself. If an assignment specifies README requirements, do not keep this content as-is. Rewrite it according to the assignment requirements.
+- 閾値をこの値にした理由。
+- 各 disorder 領域で使う内部手法。
+- Push_swap 操作数モデルにおける時間計算量の上界。
+- 空間計算量の上界。
+
+## Performance Targets
+
+評価では、提供される checker を使って正しさと操作数が確認される。
+
+| 入力数 | 合格目安 | 良好 | 優秀 |
+| --- | ---: | ---: | ---: |
+| 100 random numbers | 2000 未満 | 1500 未満 | 700 未満 |
+| 500 random numbers | 12000 未満 | 8000 未満 | 5500 未満 |
+
+## Bonus: checker
+
+bonus では、`checker` プログラムを作成できる。
+
+`checker` は、引数として初期スタック `a` を受け取り、標準入力から Push_swap 命令を 1 行ずつ読む。すべての命令を実行したあと、`a` が昇順かつ `b` が空なら `OK\n`、それ以外なら `KO\n` を標準出力へ表示する。
+
+エラー時は標準エラーへ `Error\n` を表示する。エラーには、不正な整数、`int` 範囲外、重複、不明な命令、不正な命令フォーマットなどが含まれる。
+
+bonus は mandatory が完全に動作し、すべての benchmark を満たした場合にのみ評価される。
