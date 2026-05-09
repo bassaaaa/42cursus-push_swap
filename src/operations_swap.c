@@ -23,11 +23,9 @@ static int	swap(t_stack *stk)
 		return (0);
 	f = stk->top;
 	s = stk->top->next;
-
 	temp_value = f->value;
 	f->value = s->value;
 	s->value = temp_value;
-
 	temp_index = f->index;
 	f->index = s->index;
 	s->index = temp_index;
