@@ -63,38 +63,3 @@ char	**join_and_split(int ac, char **av)
 	free(joined);
 	return (args);
 }
-
-void	skip_space(const char **str)
-{
-	while (**str == ' ' || **str == '\t' || **str == '\n' || **str == '\v'
-		|| **str == '\f' || **str == '\r')
-		(*str)++;
-}
-
-long	ft_strtol(const char *str)
-{
-	int		sign;
-	long	result;
-	int		digit;
-
-	skip_space(&str);
-	sign = 1;
-	if (*str == '+' || *str == '-')
-	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	result = 0;
-	while (ft_isdigit(*str))
-	{
-		digit = (*str - '0') * sign;
-		if (sign > 0 && result > (LONG_MAX - digit) / 10)
-			return (LONG_MAX);
-		if (sign < 0 && result < (LONG_MIN - digit) / 10)
-			return (LONG_MIN);
-		result = result * 10 + digit;
-		str++;
-	}
-	return (result);
-}

@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/08 22:27:49 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/09 14:28:28 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,25 @@
 # include "../libft/libft.h"
 # include <stdio.h>
 
-char	**join_and_split(int ac, char **av);
-void	skip_space(const char **str);
-long	ft_strtol(const char *str);
+typedef enum e_option
+{
+	OPTION_INVALID,
+	OPTION_ADAPTIVE,
+	OPTION_SIMPLE,
+	OPTION_MEDIUM,
+	OPTION_COMPLEX
+}				t_option;
+
+typedef struct s_input
+{
+	t_option	option;
+	int			*values;
+	size_t		size;
+}				t_input;
+
+char			**join_and_split(int ac, char **av);
+long			ft_strtol(const char *str);
+int				is_valid_int_format(char *str);
+int				parse_args(char **args, t_input *input);
 
 #endif
