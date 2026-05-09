@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
-#include "../libftprintf/ft_printf.h"
+# include "../libftprintf/ft_printf.h"
 
 typedef enum e_option
 {
