@@ -78,7 +78,7 @@ int	parse_args(char **args, t_input *input)
 	size_t		i;
 	t_option	option;
 
-	if (!args || !args[0])
+	if (!args || !args[0] || !input)
 		return (0);
 	i = 0;
 	input->option = OPTION_ADAPTIVE;
