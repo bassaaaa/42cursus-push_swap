@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:40:19 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/09 16:31:58 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/09 16:40:50 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,5 @@ char	**join_and_split(int ac, char **av)
 	args = ft_split(joined, ' ');
 	free(joined);
 	return (args);
-}
-
-t_node	*last_node(t_node *node)
-{
-	if (!node)
-		return (NULL);
-	while (node->next)
-		node = node->next;
-	return (node);
 }
 
