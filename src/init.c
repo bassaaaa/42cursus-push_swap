@@ -44,7 +44,7 @@ t_node	*init_node(int value)
 	return (node);
 }
 
-int	init_stack(t_stack *a,t_input *input)
+int	init_stack(t_stack *a, t_input *input)
 {
 	t_node	*node;
 	size_t	i;
