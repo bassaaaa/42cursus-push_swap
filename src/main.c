@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:37:22 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/08 20:33:09 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/09 14:37:21 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,20 @@
 int	main(int ac, char **av)
 {
 	char	**args;
+	t_input	input;
+	size_t	i;
 
 	if (ac < 2)
 		return (0);
 	args = join_and_split(ac, av);
-	while (*args != NULL)
+	if (!args || !parse_args(args, &input))
 	{
-		printf("%s\n", *args);
-		args++;
+		write(2, "Error\n", 6);
+		return (1);
 	}
+	i = 0;
+	while (i < input.size)
+		printf("%d\n", input.values[i++]);
+	free(input.values);
 	return (0);
 }
