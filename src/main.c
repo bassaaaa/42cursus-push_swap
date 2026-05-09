@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:37:22 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/09 14:37:21 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/09 15:50:27 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int ac, char **av)
 	}
 	i = 0;
 	while (i < input.size)
-		printf("%d\n", input.values[i++]);
+		ft_printf("%d\n", input.values[i++]);
 	free(input.values);
 	return (0);
 }
