@@ -63,4 +63,3 @@ char	**join_and_split(int ac, char **av)
 	free(joined);
 	return (args);
 }
-
