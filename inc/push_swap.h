@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/09 16:58:19 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/10 19:22:17 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ typedef struct s_stack
 	char			name;
 }					t_stack;
 
+// utils
 char				**join_and_split(int ac, char **av);
+void				assgin_index(t_stack *stack);
+
 long				ft_strtol(const char *str);
 int					is_valid_int_format(char *str);
 int					parse_args(char **args, t_input *input);
@@ -66,5 +69,7 @@ void				rr(t_stack *a, t_stack *b);
 void				rra(t_stack *a);
 void				rrb(t_stack *b);
 void				rrr(t_stack *a, t_stack *b);
+
+int					get_stack_size(t_stack *stack);
 
 #endif
