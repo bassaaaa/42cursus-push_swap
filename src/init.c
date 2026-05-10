@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 17:03:26 by ksaotome          #+#    #+#             */
-/*   Updated: 2026/05/09 19:00:51 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/10 19:00:27 by ksaotome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_node	*init_node(int value)
 	if (!node)
 		return (NULL);
 	node->value = value;
-	node->index = 0;
+	node->index = -1;
 	node->pos = 0;
 	node->target_pos = 0;
 	node->cost_a = 0;
