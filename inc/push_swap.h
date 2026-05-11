@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/10 19:22:17 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/11 23:19:38 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,10 @@ void				rrb(t_stack *b);
 void				rrr(t_stack *a, t_stack *b);
 
 int					get_stack_size(t_stack *stack);
+
+// sort_small
+void				sort_three(t_stack *stack);
+void				sort_four(t_stack *a, t_stack *b);
+void				sort_five(t_stack *a, t_stack *b);
 
 #endif
