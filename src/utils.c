@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:40:19 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/10 19:16:42 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/12 16:22:26 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	**join_and_split(int ac, char **av)
 	return (args);
 }
 
-int	get_stack_size(t_stack *stack)
+int	stack_size(t_stack *stack)
 {
 	int		size;
 	t_node	*node;

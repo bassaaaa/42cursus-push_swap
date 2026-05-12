@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:02:08 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/10 19:22:24 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/12 16:23:33 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	assgin_index(t_stack *stack)
 	int		size;
 
 	i = 0;
-	size = get_stack_size(stack);
+	size = stack_size(stack);
 	while (i < size)
 	{
 		min = get_min_unindexed(stack);
