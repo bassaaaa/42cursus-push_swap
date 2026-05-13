@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/12 20:59:46 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/13 17:40:54 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,11 @@ typedef struct s_stack
 	char			name;
 }					t_stack;
 
-// utils
-char				**join_and_split(int ac, char **av);
-void				assgin_index(t_stack *stack);
-int					stack_size(t_stack *stack);
-
-long				ft_strtol(const char *str);
+// input
 int					is_valid_int_format(char *str);
 int					parse_args(char **args, t_input *input);
+char				**join_and_split(int ac, char **av);
+void				set_index(t_stack *stack);
 
 // operations
 void				sa(t_stack *a);
@@ -71,10 +68,14 @@ void				rra(t_stack *a);
 void				rrb(t_stack *b);
 void				rrr(t_stack *a, t_stack *b);
 
+// utils
+long				ft_strtol(const char *str);
+int					stack_size(t_stack *stack);
+
 // sort_small
 void				sort_three(t_stack *stack);
 void				sort_four(t_stack *a, t_stack *b);
 void				sort_five(t_stack *a, t_stack *b);
-int	get_pos_by_min_index(t_stack *stack);
+int					get_pos_by_min_index(t_stack *stack);
 
 #endif
