@@ -6,35 +6,11 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 21:52:43 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/12 20:59:33 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/13 17:47:34 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	get_pos_by_min_index(t_stack *stack)
-{
-	t_node	*cur;
-	int		pos;
-	int		min_pos;
-	int		min_index;
-
-	pos = 0;
-	min_pos = 0;
-	cur = stack->top;
-	min_index = cur->index;
-	while (cur)
-	{
-		if (cur->index < min_index)
-		{
-			min_index = cur->index;
-			min_pos = pos;
-		}
-		cur = cur->next;
-		pos++;
-	}
-	return (min_pos);
-}
 
 static void	push_min_to_b(t_stack *a, t_stack *b)
 {
