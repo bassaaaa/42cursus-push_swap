@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 21:52:43 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/13 17:56:43 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/13 18:48:01 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	push_min_to_b(t_stack *a, t_stack *b)
 	int	size;
 
 	pos = get_min_pos(a);
-	size = stack_size(a);
+	size = get_stack_size(a);
 	while (pos != 0)
 	{
 		if (pos <= size / 2)

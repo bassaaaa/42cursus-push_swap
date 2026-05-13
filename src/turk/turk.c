@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 17:08:16 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/13 18:07:56 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/13 18:48:32 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static void	set_costs(t_stack *a, t_stack *b)
 	int		size_a;
 	int		size_b;
 
-	size_a = stack_size(a);
-	size_b = stack_size(b);
+	size_a = get_stack_size(a);
+	size_b = get_stack_size(b);
 	cur = b->top;
 	while (cur)
 	{
@@ -66,11 +66,11 @@ static void	set_costs(t_stack *a, t_stack *b)
 
 static void	sort_remaining(t_stack *a, t_stack *b)
 {
-	if (stack_size(a) == 5)
+	if (get_stack_size(a) == 5)
 		sort_five(a, b);
-	else if (stack_size(a) == 4)
+	else if (get_stack_size(a) == 4)
 		sort_four(a, b);
-	else if (stack_size(a) == 3)
+	else if (get_stack_size(a) == 3)
 		sort_three(a);
 }
 
@@ -79,8 +79,8 @@ void	turk_sort(t_stack *a, t_stack *b)
 	int		mid_index;
 	t_node	*cheapest;
 
-	mid_index = stack_size(a) / 2;
-	while (stack_size(a) >= 6)
+	mid_index = get_stack_size(a) / 2;
+	while (get_stack_size(a) >= 6)
 	{
 		if (a->top->index < mid_index)
 			pb(a, b);

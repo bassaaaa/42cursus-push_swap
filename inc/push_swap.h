@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/13 18:06:55 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/13 18:47:39 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void				rrr(t_stack *a, t_stack *b);
 
 // utils
 long				ft_strtol(const char *str);
-int					stack_size(t_stack *stack);
+int					get_stack_size(t_stack *stack);
 int					get_min_pos(t_stack *stack);
 void				set_pos(t_stack *stack);
 int					get_cost(int pos, int size);

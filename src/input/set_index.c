@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assign_index.c                                     :+:      :+:    :+:   */
+/*   set_index.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:02:08 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/13 17:38:08 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/13 18:47:49 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	set_index(t_stack *stack)
 	int		size;
 
 	i = 0;
-	size = stack_size(stack);
+	size = get_stack_size(stack);
 	while (i < size)
 	{
 		min = get_min_unindexed(stack);
