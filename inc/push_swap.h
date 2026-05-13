@@ -56,7 +56,7 @@ char				**join_and_split(int ac, char **av);
 void				set_index(t_stack *stack);
 
 // init
-void	free_stack(t_stack *stk);
+void				free_stack(t_stack *stk);
 int					init_stack(t_stack *a, t_input *input);
 
 // operations
