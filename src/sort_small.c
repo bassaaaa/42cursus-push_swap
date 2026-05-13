@@ -6,13 +6,13 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 21:52:43 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/12 16:22:53 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/12 20:59:33 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_pos_by_min_index(t_stack *stack)
+int	get_pos_by_min_index(t_stack *stack)
 {
 	t_node	*cur;
 	int		pos;

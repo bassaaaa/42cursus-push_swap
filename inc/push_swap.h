@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/12 16:23:25 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/12 20:59:46 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ void				rrr(t_stack *a, t_stack *b);
 void				sort_three(t_stack *stack);
 void				sort_four(t_stack *a, t_stack *b);
 void				sort_five(t_stack *a, t_stack *b);
+int	get_pos_by_min_index(t_stack *stack);
 
 #endif
