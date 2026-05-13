@@ -6,59 +6,78 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 17:08:16 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/12 21:00:11 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/13 18:07:56 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	set_target_pos(t_stack *a, t_stack *b)
+static int	get_target_pos(t_stack *a, int b_index)
 {
+	t_node	*cur;
 	int		target_index;
 	int		target_pos;
-	t_node	*cur_a;
-	t_node	*cur_b;
 
-	cur_b = b->top;
-	while (cur_b)
+	cur = a->top;
+	target_index = INT_MAX;
+	target_pos = 0;
+	while (cur)
 	{
-		cur_a = a->top;
-		target_index = INT_MAX;
-		target_pos = 0;
-		while (cur_a)
+		if (cur->index > b_index && cur->index < target_index)
 		{
-			if (cur_a->index > cur_b->index && cur_a->index < target_index)
-			{
-				target_index = cur_a->index;
-				target_pos = cur_a->pos;
-			}
-			cur_a = cur_a->next;
+			target_index = cur->index;
+			target_pos = cur->pos;
 		}
-		if (target_index == INT_MAX)
-			cur_b->target_pos = get_pos_by_min_index(a);
-		else
-			cur_b->target_pos = target_pos;
-		cur_b = cur_b->next;
+		cur = cur->next;
+	}
+	if (target_index != INT_MAX)
+		return (target_pos);
+	return (get_min_pos(a));
+}
+
+static void	set_target_pos(t_stack *a, t_stack *b)
+{
+	t_node	*b_node;
+
+	b_node = b->top;
+	while (b_node)
+	{
+		b_node->target_pos = get_target_pos(a, b_node->index);
+		b_node = b_node->next;
 	}
 }
 
-static void	set_pos(t_stack *stack)
+static void	set_costs(t_stack *a, t_stack *b)
 {
-	int		i;
 	t_node	*cur;
+	int		size_a;
+	int		size_b;
 
-	i = 0;
-	cur = stack->top;
+	size_a = stack_size(a);
+	size_b = stack_size(b);
+	cur = b->top;
 	while (cur)
 	{
-		cur->pos = i++;
+		cur->cost_a = get_cost(cur->target_pos, size_a);
+		cur->cost_b = get_cost(cur->pos, size_b);
 		cur = cur->next;
 	}
 }
 
+static void	sort_remaining(t_stack *a, t_stack *b)
+{
+	if (stack_size(a) == 5)
+		sort_five(a, b);
+	else if (stack_size(a) == 4)
+		sort_four(a, b);
+	else if (stack_size(a) == 3)
+		sort_three(a);
+}
+
 void	turk_sort(t_stack *a, t_stack *b)
 {
-	int	mid_index;
+	int		mid_index;
+	t_node	*cheapest;
 
 	mid_index = stack_size(a) / 2;
 	while (stack_size(a) >= 6)
@@ -68,8 +87,16 @@ void	turk_sort(t_stack *a, t_stack *b)
 		else
 			ra(a);
 	}
-	while (1)
+	sort_remaining(a, b);
+	while (b->top)
 	{
+		set_pos(a);
 		set_pos(b);
+		set_target_pos(a, b);
+		set_costs(a, b);
+		cheapest = get_cheapest(b);
+		move_cheapest(a, b, cheapest);
+		pa(a, b);
 	}
+	rotate_min_to_top(a);
 }

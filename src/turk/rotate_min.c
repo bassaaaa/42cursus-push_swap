@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_small.c                                       :+:      :+:    :+:   */
+/*   rotate_min.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/11 21:52:43 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/13 17:56:43 by tsito            ###   ########.fr       */
+/*   Created: 2026/05/13 19:00:00 by tsito             #+#    #+#             */
+/*   Updated: 2026/05/13 19:00:00 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push_min_to_b(t_stack *a, t_stack *b)
+void	rotate_min_to_top(t_stack *a)
 {
 	int	pos;
 	int	size;
@@ -34,33 +34,4 @@ static void	push_min_to_b(t_stack *a, t_stack *b)
 				pos = 0;
 		}
 	}
-	pb(a, b);
-}
-
-void	sort_five(t_stack *a, t_stack *b)
-{
-	push_min_to_b(a, b);
-	push_min_to_b(a, b);
-	sort_three(a);
-	pa(a, b);
-	pa(a, b);
-}
-
-void	sort_four(t_stack *a, t_stack *b)
-{
-	push_min_to_b(a, b);
-	sort_three(a);
-	pa(a, b);
-}
-
-void	sort_three(t_stack *a)
-{
-	if (a->top->index > a->top->next->index
-		&& a->top->index > a->top->next->next->index)
-		ra(a);
-	else if (a->top->next->index > a->top->index
-		&& a->top->next->index > a->top->next->next->index)
-		rra(a);
-	if (a->top->index > a->top->next->index)
-		sa(a);
 }
