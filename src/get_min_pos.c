@@ -35,4 +35,3 @@ int	get_min_pos(t_stack *stack)
 	}
 	return (min_pos);
 }
-

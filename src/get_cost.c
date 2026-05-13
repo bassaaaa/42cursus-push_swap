@@ -18,4 +18,3 @@ int	get_cost(int pos, int size)
 		return (pos);
 	return (pos - size);
 }
-
