@@ -28,8 +28,8 @@ static int	max_int(int a, int b)
 
 static int	get_total_cost(t_node *node)
 {
-	if ((node->cost_a > 0 && node->cost_b > 0)
-		|| (node->cost_a < 0 && node->cost_b < 0))
+	if ((node->cost_a > 0 && node->cost_b > 0) || (node->cost_a < 0
+			&& node->cost_b < 0))
 		return (max_int(abs_int(node->cost_a), abs_int(node->cost_b)));
 	return (abs_int(node->cost_a) + abs_int(node->cost_b));
 }
