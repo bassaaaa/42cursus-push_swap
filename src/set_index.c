@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assign_index.c                                     :+:      :+:    :+:   */
+/*   set_index.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:02:08 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/10 19:28:54 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/13 19:58:27 by ksaotome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_node	*find_node_by_value(t_stack *stack, int value)
 	return (NULL);
 }
 
-void	assgin_index(t_stack *stack)
+void	set_index(t_stack *stack)
 {
 	t_node	*node;
 	int		i;

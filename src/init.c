@@ -6,13 +6,13 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 17:03:26 by ksaotome          #+#    #+#             */
-/*   Updated: 2026/05/10 19:00:27 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/13 19:01:13 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_stack(t_stack *stk)
+static void	free_stack(t_stack *stk)
 {
 	t_node	*current;
 	t_node	*next;
@@ -27,7 +27,7 @@ void	free_stack(t_stack *stk)
 	stk->top = NULL;
 }
 
-t_node	*init_node(int value)
+static t_node	*init_node(int value)
 {
 	t_node	*node;
 

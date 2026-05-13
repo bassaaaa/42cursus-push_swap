@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   join_and_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:40:19 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/10 19:16:42 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/13 17:32:16 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,4 @@ char	**join_and_split(int ac, char **av)
 	args = ft_split(joined, ' ');
 	free(joined);
 	return (args);
-}
-
-int	get_stack_size(t_stack *stack)
-{
-	int		size;
-	t_node	*node;
-
-	size = 0;
-	node = stack->top;
-	while (node)
-	{
-		node = node->next;
-		size++;
-	}
-	return (size);
 }
