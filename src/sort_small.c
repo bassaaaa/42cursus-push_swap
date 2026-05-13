@@ -6,36 +6,11 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 21:52:43 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/13 18:48:01 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/13 19:50:22 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	push_min_to_b(t_stack *a, t_stack *b)
-{
-	int	pos;
-	int	size;
-
-	pos = get_min_pos(a);
-	size = get_stack_size(a);
-	while (pos != 0)
-	{
-		if (pos <= size / 2)
-		{
-			ra(a);
-			pos--;
-		}
-		else
-		{
-			rra(a);
-			pos++;
-			if (pos == size)
-				pos = 0;
-		}
-	}
-	pb(a, b);
-}
 
 void	sort_five(t_stack *a, t_stack *b)
 {
