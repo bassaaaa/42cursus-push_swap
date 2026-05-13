@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/13 19:03:08 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/13 19:11:26 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char				**join_and_split(int ac, char **av);
 void				set_index(t_stack *stack);
 
 // init
+void	free_stack(t_stack *stk);
 int					init_stack(t_stack *a, t_input *input);
 
 // operations
