@@ -36,4 +36,3 @@ void	push_min_to_b(t_stack *a, t_stack *b)
 	}
 	pb(a, b);
 }
-
