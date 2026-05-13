@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/13 18:47:39 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/13 19:01:35 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ int					is_valid_int_format(char *str);
 int					parse_args(char **args, t_input *input);
 char				**join_and_split(int ac, char **av);
 void				set_index(t_stack *stack);
+
+// init
+int					init_stack(t_stack *a, t_input *input);
 
 // operations
 void				sa(t_stack *a);
