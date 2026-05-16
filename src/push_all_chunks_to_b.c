@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_chunks_to_b.c                                 :+:      :+:    :+:   */
+/*   push_all_chunks_to_b.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksaotome <ksaotome@student.42.ja>          +#+  +:+       +#+        */
+/*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 15:50:37 by ksaotome          #+#    #+#             */
-/*   Updated: 2026/05/16 16:22:32 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/16 18:43:07 by ksaotome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	search_chunks_in_a(t_stack *a, t_stack *b,
-	int chunk_min, int chunk_max)
+static void	push_chunk_to_b(t_stack *a, t_stack *b, int chunk_min, int chunk_max)
 {
 	int	n;
 
@@ -30,7 +29,7 @@ static void	search_chunks_in_a(t_stack *a, t_stack *b,
 	}
 }
 
-void	push_chunks_to_b(t_stack *a, t_stack *b, int total)
+void	push_all_chunks_to_b(t_stack *a, t_stack *b, int total)
 {
 	int	chunk_min;
 	int	chunk_max;
@@ -38,14 +37,14 @@ void	push_chunks_to_b(t_stack *a, t_stack *b, int total)
 	int	chunk_size_value;
 	int	i;
 
-	chunk_count_value = chunk_count(total);
-	chunk_size_value = chunk_size(total, chunk_count_value);
+	chunk_count_value = get_chunk_count(total);
+	chunk_size_value = get_chunk_size(total, chunk_count_value);
 	i = 0;
 	while (i < chunk_count_value)
 	{
 		chunk_min = i * chunk_size_value;
-		chunk_max = chunk_max_search(chunk_min, total, chunk_size_value);
-		search_chunks_in_a(a, b, chunk_min, chunk_max);
+		chunk_max = get_chunk_max(chunk_min, total, chunk_size_value);
+		push_chunk_to_b(a, b, chunk_min, chunk_max);
 		i++;
 	}
 }
