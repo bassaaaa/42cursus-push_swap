@@ -23,6 +23,7 @@ INCLUDES	:= -I. -I$(LIBFTDIR) -I$(PRINTF_DIR)
 OUTDIR		:= .out
 
 SRCS		:= \
+			cleanup.c \
 			chunk_parts.c \
 			chunk_sort.c \
 			compute_disorder.c \
