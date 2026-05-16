@@ -12,7 +12,8 @@
 
 #include "push_swap.h"
 
-static void	push_chunk_to_b(t_stack *a, t_stack *b, int chunk_min, int chunk_max)
+static void	push_chunk_to_b(t_stack *a, t_stack *b, int chunk_min,
+		int chunk_max)
 {
 	int	n;
 
