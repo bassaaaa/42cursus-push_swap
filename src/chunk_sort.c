@@ -3,52 +3,99 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ksaotome <ksaotome@student.42.ja>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 20:36:46 by ksaotome          #+#    #+#             */
-/*   Updated: 2026/05/15 22:10:16 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/16 15:30:19 by ksaotome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_sqrt(int nb)
+static int	find_pos(t_stack *b, int target_index)
 {
-	int	root;
+	t_node	*n;
+	int		pos;
 
-	if (nb <= 0 || nb > INT_MAX)
-		return (0);
-	root = 0;
-	while (nb > root * root)
+	n = b->top;
+	pos = 0;
+	while (n)
 	{
-		root++;
-		if (nb == root * root)
-			return (root);
+		if (n->index == target_index)
+			return (pos);
+		n = n->next;
+		pos++;
 	}
-	return (root - 1);
+	return (0);
+}
+static int	max_seach(int chunk_min, int total_size, int chunk_size)
+{
+	int	chunk_max;
+
+	chunk_max = chunk_min + chunk_size - 1;
+	if (chunk_max >= total_size)
+		chunk_max = total_size - 1;
+	return (chunk_max);
 }
 
-void	push_a(t_stack *a, t_stack *b, int total_size, int chunk_count, int chunk_size)
+static void	search_push_a(t_stack *a, t_stack *b, int total_size, int chunk_size, int chunk_count)
 {
-	int	i;
+	int i;
 	int n;
+	int chunk_min;
+	int chunk_max;
 
 	i = 0;
-	n = chunk_size;
-	while ()
+	while (i < chunk_count)
 	{
-		while (n--)
+		n = 0;
+		chunk_min = i * chunk_size;
+		chunk_max = max_search(chunk_min, total_size, chunk_size);
+		while (n < chunk_max - chunk_min + 1)
 		{
-			if (i <= a->top->index && i + chunk_size > a->top->index)
-				pb(a, b);
-			if (a->top->index >= ) 
+			if (a->top->index >= chunk_min && a->top->index <= chunk_max)
 			{
-				//TOPない場合脱出する
+				pb(a, b);
+				n++;
 			}
-			ra(a);
+			else
+				ra(a);
 		}
-		i += chunk_size;
-		n = chunk_size;
+		i++;
+	}
+}
+
+static void	search_push_b(t_stack *a, t_stack *b, int total_size, int chunk_size, int chunk_count)
+{
+	int i;
+	int chunk_min;
+	int chunk_max;
+	int pos;
+	int current_size;
+
+	i = chunk_count - 1;
+	current_size = total_size;
+	while (i >= 0)
+	{
+		chunk_min = i * chunk_size;
+		chunk_max = max_search(chunk_min, total_size, chunk_size);
+		while (chunk_max >= chunk_min)
+		{
+			pos = find_pos(b, chunk_max);
+			if (pos <= current_size / 2)
+				while (pos-- > 0)
+					rb(b);
+			else
+			{
+				pos = current_size - pos;
+				while (pos-- > 0)
+					rrb(b);
+			}
+			pa(a, b);
+			current_size--;
+			chunk_max--;
+		}
+		i--;
 	}
 }
 
@@ -62,7 +109,7 @@ void	chunk_sort(t_stack *a, t_stack *b)
 	total_size = get_stack_size(a);
 	chunk_count = ft_sqrt(total_size);
 	chunk_size = (total_size + chunk_count - 1) / chunk_count;
-
-	push_a(a, b, total_size, chunk_size, chunk_count)
+	search_push_a(a, b, total_size, chunk_size, chunk_count);
+	search_push_b(a, b, total_size, chunk_size, chunk_count);
 }
 

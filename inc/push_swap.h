@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ksaotome <ksaotome@student.42.ja>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/15 21:40:31 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/16 14:59:16 by ksaotome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,9 @@ t_node				*get_cheapest(t_stack *b);
 void				move_cheapest(t_stack *a, t_stack *b, t_node *cheapest);
 void				rotate_min_to_top(t_stack *a);
 void				turk_sort(t_stack *a, t_stack *b);
+
+// chunk_
+int					ft_sqrt(int nb);
+void				chunk_sort(t_stack *a, t_stack *b);
 
 #endif
