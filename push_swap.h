@@ -59,6 +59,12 @@ void				set_index(t_stack *stack);
 void				free_stack(t_stack *stk);
 int					init_stack(t_stack *a, t_input *input);
 
+// cleanup
+void				free_args(char **args);
+int					free_input(t_input *input, char **args, int status);
+int					free_all(t_stack *a, t_stack *b, t_input *input,
+						char **args);
+
 // operations
 void				sa(t_stack *a);
 void				sb(t_stack *b);

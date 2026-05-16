@@ -12,18 +12,6 @@
 
 #include "push_swap.h"
 
-static void	free_args(char **args)
-{
-	size_t	i;
-
-	if (!args)
-		return ;
-	i = 0;
-	while (args[i])
-		free(args[i++]);
-	free(args);
-}
-
 static int	is_sorted(t_stack *a)
 {
 	t_node	*cur;
@@ -90,11 +78,10 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	if (!init_stack(&a, &input))
-		return (free(input.values), free_args(args), 1);
+		return (free_input(&input, args, 1));
 	b.top = NULL;
 	b.name = 'b';
 	set_index(&a);
 	exec_sort(&a, &b, &input, compute_disorder(&a));
-	return (free_stack(&a), free_stack(&b), free(input.values),
-		free_args(args), 0);
+	return (free_all(&a, &b, &input, args));
 }
