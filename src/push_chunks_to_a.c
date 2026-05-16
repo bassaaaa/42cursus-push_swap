@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42.ja>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 15:49:32 by ksaotome          #+#    #+#             */
-/*   Updated: 2026/05/16 16:22:41 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/16 17:52:50 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	push_chunks_to_a(t_stack *a, t_stack *b, int total)
 		{
 			search_chunk_in_b(a, b, total, chunk_max);
 			chunk_max--;
+			total--;
 		}
 		i--;
 	}
