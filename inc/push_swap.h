@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42.ja>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/16 14:59:16 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/16 15:34:40 by ksaotome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int					get_min_pos(t_stack *stack);
 void				set_pos(t_stack *stack);
 int					get_cost(int pos, int size);
 void				push_min_to_b(t_stack *a, t_stack *b);
+double				compute_disorder(t_stack *a);
 
 // sort_small
 void				sort_three(t_stack *stack);
