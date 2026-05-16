@@ -6,13 +6,14 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 15:50:37 by ksaotome          #+#    #+#             */
-/*   Updated: 2026/05/16 18:43:07 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/16 18:57:04 by ksaotome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push_chunk_to_b(t_stack *a, t_stack *b, int chunk_min, int chunk_max)
+static void	push_chunk_to_b(t_stack *a, t_stack *b, int chunk_min,
+	int chunk_max)
 {
 	int	n;
 

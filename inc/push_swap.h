@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/16 18:52:36 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/16 18:59:28 by ksaotome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,13 @@ void				turk_sort(t_stack *a, t_stack *b);
 
 // chunk_
 int					ft_sqrt(int nb);
-int					chunk_count(int total_size);
-int					chunk_size(int total_size, int chunk_count);
-int					chunk_max_search(int chunk_min, int total, int chunk_size);
-void				push_all_chunks_to_b(t_stack *a, t_stack *b, int total_size);
-void				push_all_chunks_to_a(t_stack *a, t_stack *b, int total_size);
+int					get_chunk_count(int total_size);
+int					get_chunk_size(int total_size, int chunk_count);
+int					get_chunk_max(int chunk_min, int total, int chunk_size);
+void				push_all_chunks_to_b(t_stack *a, t_stack *b,
+						int total_size);
+void				push_all_chunks_to_a(t_stack *a, t_stack *b,
+						int total_size);
 void				chunk_sort(t_stack *a, t_stack *b);
 
 #endif
