@@ -39,13 +39,13 @@ static int	rotate(t_stack *stack)
 void	ra(t_stack *a)
 {
 	if (rotate(a))
-		ft_printf("ra\n");
+		print_op("ra", OP_RA);
 }
 
 void	rb(t_stack *b)
 {
 	if (rotate(b))
-		ft_printf("rb\n");
+		print_op("rb", OP_RB);
 }
 
 void	rr(t_stack *a, t_stack *b)
@@ -54,5 +54,5 @@ void	rr(t_stack *a, t_stack *b)
 		return ;
 	rotate(a);
 	rotate(b);
-	ft_printf("rr\n");
+	print_op("rr", OP_RR);
 }

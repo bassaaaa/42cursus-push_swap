@@ -23,6 +23,7 @@ INCLUDES	:= -I. -I$(LIBFTDIR) -I$(PRINTF_DIR)
 OUTDIR		:= .out
 
 SRCS		:= \
+			benchmark.c \
 			cleanup.c \
 			chunk_parts.c \
 			chunk_sort.c \
@@ -42,6 +43,9 @@ SRCS		:= \
 			operations_rotate.c \
 			operations_swap.c \
 			parse.c \
+			parse_options.c \
+			print_benchmark.c \
+			print_benchmark_counts.c \
 			push_all_chunks_to_a.c \
 			push_all_chunks_to_b.c \
 			push_min_to_b.c \

@@ -35,13 +35,13 @@ static int	swap(t_stack *stk)
 void	sa(t_stack *a)
 {
 	if (swap(a))
-		ft_printf("sa\n");
+		print_op("sa", OP_SA);
 }
 
 void	sb(t_stack *b)
 {
 	if (swap(b))
-		ft_printf("sb\n");
+		print_op("sb", OP_SB);
 }
 
 void	ss(t_stack *a, t_stack *b)
@@ -50,5 +50,5 @@ void	ss(t_stack *a, t_stack *b)
 		return ;
 	swap(a);
 	swap(b);
-	ft_printf("ss\n");
+	print_op("ss", OP_SS);
 }

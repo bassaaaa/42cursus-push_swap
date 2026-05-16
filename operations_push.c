@@ -28,11 +28,11 @@ static int	push(t_stack *dst, t_stack *src)
 void	pa(t_stack *a, t_stack *b)
 {
 	if (push(a, b))
-		ft_printf("pa\n");
+		print_op("pa", OP_PA);
 }
 
 void	pb(t_stack *a, t_stack *b)
 {
 	if (push(b, a))
-		ft_printf("pb\n");
+		print_op("pb", OP_PB);
 }

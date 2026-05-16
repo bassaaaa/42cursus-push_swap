@@ -55,6 +55,18 @@ static void	exec_sort(t_stack *a, t_stack *b, t_input *input, double disorder)
 		sort_adaptive(a, b, disorder);
 }
 
+static void	run_sort(t_stack *a, t_stack *b, t_input *input)
+{
+	double	disorder;
+
+	set_index(a);
+	disorder = compute_disorder(a);
+	init_benchmark();
+	exec_sort(a, b, input, disorder);
+	if (input->bench)
+		print_benchmark(input, disorder);
+}
+
 int	main(int ac, char **av)
 {
 	char	**args;
@@ -75,7 +87,6 @@ int	main(int ac, char **av)
 		return (free_input(&input, args, 1));
 	b.top = NULL;
 	b.name = 'b';
-	set_index(&a);
-	exec_sort(&a, &b, &input, compute_disorder(&a));
+	run_sort(&a, &b, &input);
 	return (free_all(&a, &b, &input, args));
 }

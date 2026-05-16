@@ -12,19 +12,6 @@
 
 #include "push_swap.h"
 
-static t_option	get_option(char *str)
-{
-	if (ft_strncmp(str, "--adaptive", ft_strlen("--adaptive") + 1) == 0)
-		return (OPTION_ADAPTIVE);
-	if (ft_strncmp(str, "--simple", ft_strlen("--simple") + 1) == 0)
-		return (OPTION_SIMPLE);
-	if (ft_strncmp(str, "--medium", ft_strlen("--medium") + 1) == 0)
-		return (OPTION_MEDIUM);
-	if (ft_strncmp(str, "--complex", ft_strlen("--complex") + 1) == 0)
-		return (OPTION_COMPLEX);
-	return (OPTION_INVALID);
-}
-
 static size_t	get_values_size(char **args, size_t i)
 {
 	size_t	size;
@@ -75,19 +62,12 @@ static int	fill_values(char **args, size_t start, t_input *input)
 
 int	parse_args(char **args, t_input *input)
 {
-	size_t		i;
-	t_option	option;
+	size_t	i;
 
 	if (!args || !args[0] || !input)
 		return (0);
-	i = 0;
-	input->option = OPTION_ADAPTIVE;
-	option = get_option(args[i]);
-	if (option != OPTION_INVALID)
-	{
-		input->option = option;
-		i++;
-	}
+	if (!parse_options(args, input, &i))
+		return (0);
 	input->size = get_values_size(args, i);
 	if (input->size == 0)
 		return (0);
