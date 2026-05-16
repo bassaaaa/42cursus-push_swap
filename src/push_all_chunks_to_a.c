@@ -36,12 +36,12 @@ static void	push_chunk_to_a(t_stack *a, t_stack *b, int total, int chunk_max)
 	pos = find_pos(b, chunk_max);
 	if (pos <= total / 2)
 		while (pos-- > 0)
-			rrb(b);
+			rb(b);
 	else
 	{
 		pos = total - pos;
 		while (pos-- > 0)
-			rb(b);
+			rrb(b);
 	}
 	pa(a, b);
 }
