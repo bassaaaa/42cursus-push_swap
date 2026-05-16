@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chunk_search_a.c                                   :+:      :+:    :+:   */
+/*   push_chunks_to_b.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksaotome <ksaotome@student.42.ja>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 15:50:37 by ksaotome          #+#    #+#             */
-/*   Updated: 2026/05/16 16:03:10 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/16 16:22:32 by ksaotome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	search_chunks_in_a(t_stack *a, t_stack *b,
 	}
 }
 
-void	push_chunks_to_b(t_stack *a, t_stack *b, int total_size)
+void	push_chunks_to_b(t_stack *a, t_stack *b, int total)
 {
 	int	chunk_min;
 	int	chunk_max;
@@ -38,13 +38,13 @@ void	push_chunks_to_b(t_stack *a, t_stack *b, int total_size)
 	int	chunk_size_value;
 	int	i;
 
-	chunk_count_value = chunk_count(total_size);
-	chunk_size_value = chunk_size(total_size, chunk_count_value);
+	chunk_count_value = chunk_count(total);
+	chunk_size_value = chunk_size(total, chunk_count_value);
 	i = 0;
 	while (i < chunk_count_value)
 	{
 		chunk_min = i * chunk_size_value;
-		chunk_max = chunk_max_search(chunk_min, total_size, chunk_size_value);
+		chunk_max = chunk_max_search(chunk_min, total, chunk_size_value);
 		search_chunks_in_a(a, b, chunk_min, chunk_max);
 		i++;
 	}
