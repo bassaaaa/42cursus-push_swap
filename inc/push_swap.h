@@ -82,6 +82,7 @@ void				push_min_to_b(t_stack *a, t_stack *b);
 double				compute_disorder(t_stack *a);
 
 // sort_small
+void				select_sort(t_stack *a, t_stack *b);
 void				sort_three(t_stack *stack);
 void				sort_four(t_stack *a, t_stack *b);
 void				sort_five(t_stack *a, t_stack *b);
