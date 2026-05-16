@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 18:25:30 by ksaotome          #+#    #+#             */
-/*   Updated: 2026/05/13 20:14:24 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/16 20:05:24 by ksaotome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	select_sort(t_stack *a, t_stack *b)
 {
-	while (get_stack_size(a) > 3)
+	while (get_stack_size(a) > 1)
 	{
 		rotate_min_to_top(a);
 		pb(a, b);
 	}
-	sort_three(a);
 	while (b->top)
 		pa(a, b);
 }

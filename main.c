@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:37:22 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/09 15:50:27 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/16 19:58:34 by ksaotome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,6 @@ static void	exec_sort(t_stack *a, t_stack *b, t_input *input, double disorder)
 	size = get_stack_size(a);
 	if (size == 2)
 		sa(a);
-	else if (size == 3)
-		sort_three(a);
-	else if (size == 4)
-		sort_four(a, b);
-	else if (size == 5)
-		sort_five(a, b);
 	else if (input->option == OPTION_SIMPLE)
 		select_sort(a, b);
 	else if (input->option == OPTION_MEDIUM)
