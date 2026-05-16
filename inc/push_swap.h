@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksaotome <ksaotome@student.42.ja>          +#+  +:+       +#+        */
+/*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/16 16:12:17 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/16 18:52:36 by ksaotome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ int					ft_sqrt(int nb);
 int					chunk_count(int total_size);
 int					chunk_size(int total_size, int chunk_count);
 int					chunk_max_search(int chunk_min, int total, int chunk_size);
-void				push_chunks_to_b(t_stack *a, t_stack *b, int total_size);
-void				push_chunks_to_a(t_stack *a, t_stack *b, int total_size);
+void				push_all_chunks_to_b(t_stack *a, t_stack *b, int total_size);
+void				push_all_chunks_to_a(t_stack *a, t_stack *b, int total_size);
 void				chunk_sort(t_stack *a, t_stack *b);
 
 #endif
