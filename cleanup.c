@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/08 19:37:22 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/09 15:50:27 by tsito            ###   ########.fr       */
+/*   Created: 2026/05/16 00:00:00 by tsito             #+#    #+#             */
+/*   Updated: 2026/05/16 00:00:00 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+void	free_args(char **args)
 {
-	char	**args;
-	t_input	input;
 	size_t	i;
 
-	if (ac < 2)
-		return (0);
-	args = join_and_split(ac, av);
-	if (!args || !parse_args(args, &input))
-	{
-		write(2, "Error\n", 6);
-		return (1);
-	}
+	if (!args)
+		return ;
 	i = 0;
-	while (i < input.size)
-		ft_printf("%d\n", input.values[i++]);
-	free(input.values);
+	while (args[i])
+		free(args[i++]);
+	free(args);
+}
+
+int	free_input(t_input *input, char **args, int status)
+{
+	free(input->values);
+	free_args(args);
+	return (status);
+}
+
+int	free_all(t_stack *a, t_stack *b, t_input *input, char **args)
+{
+	free_stack(a);
+	free_stack(b);
+	free(input->values);
+	free_args(args);
 	return (0);
 }

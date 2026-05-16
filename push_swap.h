@@ -13,8 +13,8 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../libft/libft.h"
-# include "../libftprintf/ft_printf.h"
+# include "libft/libft.h"
+# include "libftprintf/ft_printf.h"
 
 typedef enum e_option
 {
@@ -59,6 +59,12 @@ void				set_index(t_stack *stack);
 void				free_stack(t_stack *stk);
 int					init_stack(t_stack *a, t_input *input);
 
+// cleanup
+void				free_args(char **args);
+int					free_input(t_input *input, char **args, int status);
+int					free_all(t_stack *a, t_stack *b, t_input *input,
+						char **args);
+
 // operations
 void				sa(t_stack *a);
 void				sb(t_stack *b);
@@ -82,6 +88,7 @@ void				push_min_to_b(t_stack *a, t_stack *b);
 double				compute_disorder(t_stack *a);
 
 // sort_small
+void				select_sort(t_stack *a, t_stack *b);
 void				sort_three(t_stack *stack);
 void				sort_four(t_stack *a, t_stack *b);
 void				sort_five(t_stack *a, t_stack *b);
