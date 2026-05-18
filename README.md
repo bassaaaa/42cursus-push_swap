@@ -10,8 +10,8 @@ The goal is not only correctness, but also reducing the number of generated oper
 
 ### Contributors
 
-- `tsito`: parsing, validation, stack initialization, operation integration, radix sorting, benchmark mode, build integration.
-- `ksaotome`: chunk sorting, stack utilities, small-sort related work, strategy improvements, algorithm review.
+- `tsito`: parsing, validation, stack initialization, radix sorting, benchmark mode, build integration.
+- `ksaotome`: select sorting, chunk sorting, operation functions.
 
 Both contributors are expected to understand and explain every part of the project during evaluation.
 
@@ -249,6 +249,8 @@ Evaluation uses the provided checker.
 
 ---
 
+# push_swap
+
 ## Description
 
 `push_swap` は、2つのスタック `a` / `b` と限られた命令だけを使って整数列を昇順に並べる 42 のグループ課題である。プログラムは重複のない整数列を受け取り、初期スタック `a` を作成し、最終的に `a` が昇順、`b` が空になるような Push_swap 命令列を標準出力へ出力する。
@@ -257,8 +259,8 @@ Evaluation uses the provided checker.
 
 ### Contributors
 
-- `tsito`: パース、バリデーション、スタック初期化、操作関数の統合、radix ソート、ベンチマークモード、ビルド設定。
-- `ksaotome`: チャンクソート、スタックユーティリティ、小規模ソート関連、戦略改善、アルゴリズムレビュー。
+- `tsito`: パース、バリデーション、スタック初期化、radix ソート、ベンチマークモード、ビルド設定。
+- `ksaotome`: 選択ソート、チャンクソート、操作関数。
 
 評価時には、両者がプロジェクト全体を説明できる必要がある。
 
@@ -294,7 +296,7 @@ make re
 ./push_swap 2 1 3 6 5 8
 ```
 
-通常の出力は Push_swap 命令のみである。`--bench` を有効にした場合でも、ベンチマーク情報は標準エラーへ出るため、標準出力の操作列は checker にそのまま渡せる。
+通常の出力は 操作命令のみである。`--bench` を有効にした場合でも、ベンチマーク情報は標準エラーへ出るため、標準出力の操作列は checker にそのまま渡せる。
 
 checker 使用例:
 
