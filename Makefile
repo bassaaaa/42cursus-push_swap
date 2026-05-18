@@ -6,7 +6,7 @@
 #    By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/27 19:00:55 by tsito             #+#    #+#              #
-#    Updated: 2026/05/08 22:48:03 by tsito            ###   ########.fr        #
+#    Updated: 2026/05/18 18:08:00 by tsito            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SRCS		:= \
 			operations_reverse_rotate.c \
 			operations_rotate.c \
 			operations_swap.c \
-			parse.c \
+			parse_args.c \
 			parse_options.c \
 			print_benchmark.c \
 			print_benchmark_counts.c \
