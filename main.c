@@ -36,7 +36,8 @@ static void	sort_adaptive(t_stack *a, t_stack *b, double disorder)
 		turk_sort(a, b);
 }
 
-static void	sort_by_option(t_stack *a, t_stack *b, t_input *input, double disorder)
+static void	sort_by_option(t_stack *a, t_stack *b, t_input *input,
+		double disorder)
 {
 	int	size;
 
