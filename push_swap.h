@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/16 23:09:35 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/18 23:14:25 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,9 @@ long				ft_strtol(const char *str);
 int					get_stack_size(t_stack *stack);
 int					get_min_pos(t_stack *stack);
 double				compute_disorder(t_stack *a);
-
-// sort_small
-void				select_sort(t_stack *a, t_stack *b);
-void				radix_sort(t_stack *a, t_stack *b);
 void				rotate_min_to_top(t_stack *a);
 
-// chunk_
+// chunk_utils
 int					ft_sqrt(int nb);
 int					get_chunk_count(int total_size);
 int					get_chunk_size(int total_size, int chunk_count);
@@ -126,6 +122,10 @@ void				push_all_chunks_to_b(t_stack *a, t_stack *b,
 						int total_size);
 void				push_all_chunks_to_a(t_stack *a, t_stack *b,
 						int total_size);
+
+// sort
+void				select_sort(t_stack *a, t_stack *b);
+void				radix_sort(t_stack *a, t_stack *b);
 void				chunk_sort(t_stack *a, t_stack *b);
 
 #endif
