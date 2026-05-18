@@ -6,13 +6,13 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 00:00:00 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/16 23:31:40 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/18 18:02:32 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static char	*strategy_name(t_option option)
+static char	*get_strategy_name(t_option option)
 {
 	if (option == OPTION_SIMPLE)
 		return ("Simple");
@@ -23,7 +23,7 @@ static char	*strategy_name(t_option option)
 	return ("Adaptive");
 }
 
-static char	*complexity(t_input *input, double disorder)
+static char	*get_complexity(t_input *input, double disorder)
 {
 	if (input->option == OPTION_SIMPLE)
 		return ("O(n^2)");
@@ -56,9 +56,9 @@ void	print_benchmark(t_input *input, double disorder)
 {
 	print_disorder(disorder);
 	ft_putstr_fd("[bench] strategy:   ", 2);
-	ft_putstr_fd(strategy_name(input->option), 2);
+	ft_putstr_fd(get_strategy_name(input->option), 2);
 	ft_putstr_fd(" / ", 2);
-	ft_putstr_fd(complexity(input, disorder), 2);
+	ft_putstr_fd(get_complexity(input, disorder), 2);
 	ft_putstr_fd("\n[bench] total_ops:  ", 2);
 	ft_putnbr_fd(get_total_ops(), 2);
 	ft_putstr_fd("\n", 2);
