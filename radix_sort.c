@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 00:00:00 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/18 00:00:00 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/18 21:32:47 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ void	radix_sort(t_stack *a, t_stack *b)
 	while (bit < max_bits)
 	{
 		i = 0;
-		while (i++ < size)
+		while (i < size)
 		{
 			if (((a->top->index >> bit) & 1) == 0)
 				pb(a, b);
 			else
 				ra(a);
+            i++;
 		}
 		while (b->top)
 			pa(a, b);
