@@ -43,7 +43,7 @@ void	radix_sort(t_stack *a, t_stack *b)
 				pb(a, b);
 			else
 				ra(a);
-            i++;
+			i++;
 		}
 		while (b->top)
 			pa(a, b);
