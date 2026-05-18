@@ -1,38 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_min_to_b.c                                    :+:      :+:    :+:   */
+/*   radix_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/13 19:49:32 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/13 19:49:54 by tsito            ###   ########.fr       */
+/*   Created: 2026/05/18 00:00:00 by tsito             #+#    #+#             */
+/*   Updated: 2026/05/18 00:00:00 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_min_to_b(t_stack *a, t_stack *b)
+static int	get_max_bits(int size)
 {
-	int	pos;
-	int	size;
+	int	max;
+	int	bits;
 
-	pos = get_min_pos(a);
+	max = size - 1;
+	bits = 0;
+	while ((max >> bits) != 0)
+		bits++;
+	return (bits);
+}
+
+void	radix_sort(t_stack *a, t_stack *b)
+{
+	int	size;
+	int	max_bits;
+	int	bit;
+	int	i;
+
 	size = get_stack_size(a);
-	while (pos != 0)
+	max_bits = get_max_bits(size);
+	bit = 0;
+	while (bit < max_bits)
 	{
-		if (pos <= size / 2)
+		i = 0;
+		while (i++ < size)
 		{
-			ra(a);
-			pos--;
+			if (((a->top->index >> bit) & 1) == 0)
+				pb(a, b);
+			else
+				ra(a);
 		}
-		else
-		{
-			rra(a);
-			pos++;
-			if (pos == size)
-				pos = 0;
-		}
+		while (b->top)
+			pa(a, b);
+		bit++;
 	}
-	pb(a, b);
 }

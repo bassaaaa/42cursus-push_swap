@@ -33,7 +33,7 @@ static void	sort_adaptive(t_stack *a, t_stack *b, double disorder)
 	else if (disorder < 0.5)
 		chunk_sort(a, b);
 	else
-		turk_sort(a, b);
+		radix_sort(a, b);
 }
 
 static void	sort_by_option(t_stack *a, t_stack *b, t_input *input,
@@ -51,7 +51,7 @@ static void	sort_by_option(t_stack *a, t_stack *b, t_input *input,
 	else if (input->option == OPTION_MEDIUM)
 		chunk_sort(a, b);
 	else if (input->option == OPTION_COMPLEX)
-		turk_sort(a, b);
+		radix_sort(a, b);
 	else
 		sort_adaptive(a, b, disorder);
 }

@@ -53,9 +53,6 @@ typedef struct s_node
 	int				value;
 	int				index;
 	int				pos;
-	int				target_pos;
-	int				cost_a;
-	int				cost_b;
 	struct s_node	*next;
 }					t_node;
 
@@ -113,22 +110,12 @@ void				print_rotate_counts(void);
 long				ft_strtol(const char *str);
 int					get_stack_size(t_stack *stack);
 int					get_min_pos(t_stack *stack);
-void				set_pos(t_stack *stack);
-int					get_cost(int pos, int size);
-void				push_min_to_b(t_stack *a, t_stack *b);
 double				compute_disorder(t_stack *a);
 
 // sort_small
 void				select_sort(t_stack *a, t_stack *b);
-void				sort_three(t_stack *stack);
-void				sort_four(t_stack *a, t_stack *b);
-void				sort_five(t_stack *a, t_stack *b);
-
-// turk
-t_node				*get_cheapest(t_stack *b);
-void				move_cheapest(t_stack *a, t_stack *b, t_node *cheapest);
+void				radix_sort(t_stack *a, t_stack *b);
 void				rotate_min_to_top(t_stack *a);
-void				turk_sort(t_stack *a, t_stack *b);
 
 // chunk_
 int					ft_sqrt(int nb);

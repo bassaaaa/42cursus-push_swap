@@ -28,14 +28,11 @@ SRCS		:= \
 			compute_disorder.c \
 			ft_sqrt.c \
 			ft_strtol.c \
-			get_chepest.c \
-			get_cost.c \
 			get_min_pos.c \
 			get_stack_size.c \
 			init.c \
 			join_and_split.c \
 			main.c \
-			move_cheapest.c \
 			operations_push.c \
 			operations_reverse_rotate.c \
 			operations_rotate.c \
@@ -46,13 +43,10 @@ SRCS		:= \
 			print_benchmark_counts.c \
 			push_all_chunks_to_a.c \
 			push_all_chunks_to_b.c \
-			push_min_to_b.c \
+			radix_sort.c \
 			rotate_min.c \
 			select_sort.c \
 			set_index.c \
-			set_pos.c \
-			sort_small.c \
-			turk_sort.c \
 			validate.c
 OBJS 		:= $(addprefix $(OUTDIR)/, $(SRCS:.c=.o))
 

@@ -12,7 +12,7 @@ The goal is not only correctness, but also reducing the number of generated oper
 
 ### Contributors
 
-- `tsito`: parsing, validation, stack initialization, operation integration, Turk-style sorting, benchmark mode, build integration.
+- `tsito`: parsing, validation, stack initialization, operation integration, radix sorting, benchmark mode, build integration.
 - `ksaotome`: chunk sorting, stack utilities, small-sort related work, strategy improvements, algorithm review.
 
 Both contributors are expected to understand and explain every part of the project during evaluation.
@@ -102,12 +102,12 @@ Errors include:
 | --- | --- | --- |
 | `--simple` | Selection-style min extraction | `O(n^2)` |
 | `--medium` | Chunk-based sorting with about `sqrt(n)` chunks | `O(n sqrt(n))` |
-| `--complex` | Turk-style cost-based insertion | see note below |
+| `--complex` | LSD radix sort on normalized indexes | `O(n log n)` |
 | `--adaptive` | Selects an internal strategy from the disorder value | mixed |
 
 If no strategy selector is provided, `--adaptive` is used by default.
 
-The subject requires the binary to embed Simple `O(n^2)`, Medium `O(n sqrt(n))`, Complex `O(n log n)`, and Adaptive strategies. The current `--complex` implementation is a Turk-style practical strategy. It is useful for reducing moves on many inputs, but its worst-case operation upper bound is not a strict `O(n log n)` proof. For strict subject compliance, the complex strategy should be replaced or reinforced with a true `O(n log n)` Push_swap operation model algorithm such as radix sort or a stack-based merge strategy.
+The subject requires the binary to embed Simple `O(n^2)`, Medium `O(n sqrt(n))`, Complex `O(n log n)`, and Adaptive strategies. The current `--complex` implementation uses LSD radix sort on normalized indexes, which gives a clear `O(n log n)` upper bound in the Push_swap operation model.
 
 ### Allowed Operations
 
@@ -183,22 +183,20 @@ Operation model:
 - Intended upper bound: `O(n sqrt(n))` Push_swap operations for the chunk-selection phase.
 - Extra memory: `O(1)` apart from existing stack nodes.
 
-#### Complex: Turk-style cost-based insertion
+#### Complex: LSD radix sort
 
-`--complex` uses a Turk-style method:
+`--complex` uses LSD radix sort on normalized indexes. Since each input value is first mapped to an index in the range `0..n-1`, negative values do not require special bit handling.
 
-1. Push elements from `a` to `b` until a small base remains.
-2. Sort the base case in `a`.
-3. For each node in `b`, calculate:
-   - its current position in `b`,
-   - its target position in `a`,
-   - the rotation cost for both stacks.
-4. Choose the cheapest node to move.
-5. Use combined rotations (`rr` / `rrr`) when both stacks move in the same direction.
-6. Push the node back to `a`.
-7. Rotate the minimum index to the top.
+Flow:
 
-This strategy is practical and often produces fewer moves than the simple strategy. However, because it repeatedly scans candidates and can rotate up to `O(n)` per insertion, the current worst-case Push_swap operation bound should be considered closer to `O(n^2)` than a proven `O(n log n)`.
+1. Compute the number of bits required to represent the largest index.
+2. For each bit from least significant to most significant:
+   - inspect each element of stack `a` once,
+   - push elements whose current bit is `0` to `b`,
+   - rotate elements whose current bit is `1` inside `a`,
+   - push all elements from `b` back to `a`.
+
+For each bit, every element causes either one `pb` or one `ra`, and every element pushed to `b` is restored with `pa`. The number of processed bits is about `log2(n)`, so the generated operation count is bounded by `O(n log n)`. Extra memory is `O(1)` apart from the existing stack nodes.
 
 #### Adaptive
 
@@ -269,7 +267,7 @@ Evaluation uses the provided checker.
 
 ### 貢献者
 
-- `tsito`: パース、バリデーション、スタック初期化、操作関数の統合、Turk-style ソート、ベンチマークモード、ビルド設定。
+- `tsito`: パース、バリデーション、スタック初期化、操作関数の統合、radix ソート、ベンチマークモード、ビルド設定。
 - `ksaotome`: チャンクソート、スタックユーティリティ、小規模ソート関連、戦略改善、アルゴリズムレビュー。
 
 評価時には、両者がプロジェクト全体を説明できる必要がある。
@@ -357,12 +355,12 @@ Error
 | --- | --- | --- |
 | `--simple` | 選択ソート風の最小値抽出 | `O(n^2)` |
 | `--medium` | 約 `sqrt(n)` 個のチャンクを使うチャンクソート | `O(n sqrt(n))` |
-| `--complex` | Turk-style のコストベース挿入 | 下記注記参照 |
+| `--complex` | 正規化済み index に対する LSD radix sort | `O(n log n)` |
 | `--adaptive` | disorder に応じて内部戦略を選択 | 複合 |
 
 戦略指定がない場合は `--adaptive` がデフォルトである。
 
-subject は、Simple `O(n^2)`, Medium `O(n sqrt(n))`, Complex `O(n log n)`, Adaptive の4戦略をバイナリに含めることを要求している。現在の `--complex` は Turk-style の実用的な戦略である。多くの入力で操作数削減に役立つが、最悪ケースの Push_swap 操作数について厳密な `O(n log n)` 証明がある実装ではない。subject に厳密に合わせるには、radix sort やスタックベース merge など、Push_swap 操作数モデルで `O(n log n)` と説明できる戦略へ置き換える、または補強する必要がある。
+subject は、Simple `O(n^2)`, Medium `O(n sqrt(n))`, Complex `O(n log n)`, Adaptive の4戦略をバイナリに含めることを要求している。現在の `--complex` は、正規化済み index に対する LSD radix sort を使うため、Push_swap 操作数モデルで `O(n log n)` の上界を説明できる。
 
 ### 使用可能な命令
 
@@ -438,19 +436,20 @@ while b is not empty:
 - チャンク選択部分の意図した上界は `O(n sqrt(n))` Push_swap 操作である。
 - 追加メモリは、既存のスタックノードを除けば `O(1)` である。
 
-#### Complex: Turk-style コストベース挿入
+#### Complex: LSD radix sort
 
-`--complex` は Turk-style の手法を使う。
+`--complex` は、正規化済み index に対して LSD radix sort を行う。入力値は先に `0..n-1` の index へ変換されるため、負数に対する特別な bit 処理は不要である。
 
-1. 小さな基底ケースが残るまで `a` から `b` へ push する。
-2. `a` の基底ケースをソートする。
-3. `b` の各ノードについて、現在位置、`a` での target position、両スタックの回転コストを計算する。
-4. 最も安いノードを選ぶ。
-5. 同じ方向へ回転できる場合は `rr` / `rrr` を使う。
-6. `pa` で `a` へ戻す。
-7. 最後に最小 index を top へ回転する。
+流れ:
 
-この戦略は実用的で、単純戦略より操作数を減らせることが多い。ただし、候補の走査と挿入時の回転を繰り返すため、現在の実装の最悪ケースの Push_swap 操作数は、厳密な `O(n log n)` ではなく `O(n^2)` に近い上界として扱うべきである。
+1. 最大 index を表すために必要な bit 数を計算する。
+2. 下位 bit から上位 bit まで順に処理する。
+3. 各 bit について、スタック `a` の各要素を1回ずつ見る。
+4. 対象 bit が `0` の要素は `pb` で `b` へ送る。
+5. 対象 bit が `1` の要素は `ra` で `a` の中に残す。
+6. `b` の要素をすべて `pa` で `a` に戻す。
+
+各 bit について、すべての要素は `pb` または `ra` を1回行う。さらに `b` に送った要素は `pa` で戻す。処理する bit 数はおよそ `log2(n)` であるため、生成される操作数の上界は `O(n log n)` である。追加メモリは、既存のスタックノードを除けば `O(1)` である。
 
 #### Adaptive
 

@@ -37,9 +37,6 @@ static t_node	*init_node(int value)
 	node->value = value;
 	node->index = -1;
 	node->pos = 0;
-	node->target_pos = 0;
-	node->cost_a = 0;
-	node->cost_b = 0;
 	node->next = NULL;
 	return (node);
 }
