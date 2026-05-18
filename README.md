@@ -204,12 +204,6 @@ For each bit, every element causes either one `pb` or one `ra`, and every elemen
 | `0.2 <= disorder < 0.5` | Medium |
 | `disorder >= 0.5` | Complex |
 
-Rationale:
-
-- Low disorder inputs may already be close to sorted, so a simple extraction strategy is acceptable.
-- Medium disorder inputs benefit from range-based chunking.
-- High disorder inputs use a cost-based strategy to reduce unnecessary rotations.
-
 ### Benchmark Mode
 
 `--bench` prints benchmark information to standard error after sorting. It does not change the operation stream on standard output.
@@ -451,22 +445,16 @@ while b is not empty:
 | `0.2 <= disorder < 0.5` | Medium |
 | `disorder >= 0.5` | Complex |
 
-理由:
-
-- disorder が低い入力はほぼ整っているため、単純な抽出戦略でも許容できる。
-- 中程度の disorder では、範囲ベースのチャンク分割が有効である。
-- 高 disorder では、不要な回転を減らすためにコストベース戦略を使う。
-
 ### ベンチマークモード
 
 `--bench` は、ソート後にベンチマーク情報を標準エラーへ出力する。標準出力の操作列は変更しない。
 
 表示内容:
 
-- 小数2桁の disorder パーセント。
-- 選択された戦略名と計算量ラベル。
-- 合計操作数。
-- 各命令 `sa`, `sb`, `ss`, `pa`, `pb`, `ra`, `rb`, `rr`, `rra`, `rrb`, `rrr` の回数。
+- 小数2桁の disorder パーセント
+- 選択された戦略名と計算量ラベル
+- 合計操作数
+- 各命令 `sa`, `sb`, `ss`, `pa`, `pb`, `ra`, `rb`, `rr`, `rra`, `rrb`, `rrr` の回数
 
 例:
 
