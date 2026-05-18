@@ -22,7 +22,8 @@ static t_benchmark	*get_benchmark(void)
 void	print_op(char *name, t_operation op)
 {
 	get_benchmark()->counts[op]++;
-	ft_printf("%s\n", name);
+	ft_putstr_fd(name, 1);
+	ft_putchar_fd('\n', 1);
 }
 
 void	init_benchmark(void)

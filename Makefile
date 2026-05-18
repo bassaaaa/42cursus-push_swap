@@ -17,9 +17,7 @@ CFLAGS		:= -Wall -Wextra -Werror
 
 LIBFTDIR	:= libft
 LIBFT		:= $(LIBFTDIR)/libft.a
-PRINTF_DIR	:= libftprintf
-PRINTF		:= $(PRINTF_DIR)/libftprintf.a
-INCLUDES	:= -I. -I$(LIBFTDIR) -I$(PRINTF_DIR)
+INCLUDES	:= -I. -I$(LIBFTDIR)
 OUTDIR		:= .out
 
 SRCS		:= \
@@ -60,14 +58,11 @@ OBJS 		:= $(addprefix $(OUTDIR)/, $(SRCS:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(PRINTF) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) -o $@
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $@
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFTDIR)
-
-$(PRINTF):
-	$(MAKE) -C $(PRINTF_DIR)
 
 $(OUTDIR)/%.o: %.c
 	@mkdir -p $(@D)
@@ -76,12 +71,10 @@ $(OUTDIR)/%.o: %.c
 clean:
 	$(RM) -r $(OUTDIR)
 	$(MAKE) -C $(LIBFTDIR) clean
-	$(MAKE) -C $(PRINTF_DIR) clean
 
 fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFTDIR) fclean
-	$(MAKE) -C $(PRINTF_DIR) fclean
 
 re: fclean all
 
