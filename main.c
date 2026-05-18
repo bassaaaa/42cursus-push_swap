@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:37:22 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/16 19:58:34 by ksaotome         ###   ########.fr       */
+/*   Updated: 2026/05/18 18:10:02 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	sort_adaptive(t_stack *a, t_stack *b, double disorder)
 		turk_sort(a, b);
 }
 
-static void	exec_sort(t_stack *a, t_stack *b, t_input *input, double disorder)
+static void	sort_by_option(t_stack *a, t_stack *b, t_input *input, double disorder)
 {
 	int	size;
 
@@ -62,7 +62,7 @@ static void	run_sort(t_stack *a, t_stack *b, t_input *input)
 	set_index(a);
 	disorder = compute_disorder(a);
 	init_benchmark();
-	exec_sort(a, b, input, disorder);
+	sort_by_option(a, b, input, disorder);
 	if (input->bench)
 		print_benchmark(input, disorder);
 }
