@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:37:22 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/18 18:34:49 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/20 00:49:07 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,15 @@ static void	run_sort(t_stack *a, t_stack *b, t_input *input)
 
 	set_index(a);
 	disorder = compute_disorder(a);
-	init_benchmark();
+	init_benchmark(input->bench);
 	sort_by_option(a, b, input, disorder);
-	if (input->bench)
+	if (input->bench == 1)
 		print_benchmark(input, disorder);
+	else if (input->bench == 2)
+	{
+		ft_putnbr_fd(get_total_ops(), 1);
+		ft_putchar_fd('\n', 1);
+	}
 }
 
 int	main(int ac, char **av)

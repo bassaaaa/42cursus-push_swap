@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 00:00:00 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/16 00:00:00 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/20 00:47:27 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,19 @@ static t_benchmark	*get_benchmark(void)
 void	print_op(char *name, t_operation op)
 {
 	get_benchmark()->counts[op]++;
-	ft_putstr_fd(name, 1);
-	ft_putchar_fd('\n', 1);
+	if (get_benchmark()->mode != 2)
+	{
+		ft_putstr_fd(name, 1);
+		ft_putchar_fd('\n', 1);
+	}
 }
 
-void	init_benchmark(void)
+void	init_benchmark(int mode)
 {
 	int	i;
 
 	i = 0;
+	get_benchmark()->mode = mode;
 	while (i < OP_COUNT)
 		get_benchmark()->counts[i++] = 0;
 }

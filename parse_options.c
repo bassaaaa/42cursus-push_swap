@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 00:00:00 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/19 00:53:54 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/20 00:51:57 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,18 @@ static t_option	get_option(char *str)
 
 static int	is_bench(char *str)
 {
-	return (ft_strncmp(str, "--bench", ft_strlen("--bench") + 1) == 0);
+	return (ft_strncmp(str, "--bench", ft_strlen("--bench") + 1) == 0
+		|| ft_strncmp(str, "--count-only", ft_strlen("--count-only") + 1) == 0);
 }
 
-static int	set_bench(t_input *input, int *has_bench)
+static int	set_bench(char *str, t_input *input, int *has_bench)
 {
 	if (*has_bench)
 		return (0);
-	input->bench = 1;
+	if (ft_strncmp(str, "--bench", ft_strlen("--bench") + 1) == 0)
+		input->bench = 1;
+    else if (ft_strncmp(str, "--count-only", ft_strlen("--count-only") + 1) == 0)
+		input->bench = 2;
 	*has_bench = 1;
 	return (1);
 }
@@ -67,7 +71,7 @@ int	parse_options(char **args, t_input *input, size_t *i)
 	{
 		if (is_bench(args[*i]))
 		{
-			if (!set_bench(input, &has_bench))
+			if (!set_bench(args[*i], input, &has_bench))
 				return (0);
 		}
 		else if (!set_strategy_option(args[*i], input, &has_strategy))

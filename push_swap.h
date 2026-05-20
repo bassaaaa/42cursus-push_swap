@@ -6,7 +6,7 @@
 /*   By: ksaotome <ksaotome@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:35:51 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/18 23:14:25 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/20 00:47:34 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_stack
 typedef struct s_benchmark
 {
 	int				counts[OP_COUNT];
+	int				mode;
 }					t_benchmark;
 
 // input
@@ -99,7 +100,7 @@ void				rrr(t_stack *a, t_stack *b);
 
 // benchmark
 void				print_op(char *name, t_operation op);
-void				init_benchmark(void);
+void				init_benchmark(int mode);
 int					get_op_count(t_operation op);
 int					get_total_ops(void);
 void				print_benchmark(t_input *input, double disorder);
