@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 00:00:00 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/20 00:51:57 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/21 19:50:18 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static int	set_bench(char *str, t_input *input, int *has_bench)
 		return (0);
 	if (ft_strncmp(str, "--bench", ft_strlen("--bench") + 1) == 0)
 		input->bench = 1;
-    else if (ft_strncmp(str, "--count-only", ft_strlen("--count-only") + 1) == 0)
+	else if (ft_strncmp(str, "--count-only", ft_strlen("--count-only")
+			+ 1) == 0)
 		input->bench = 2;
 	*has_bench = 1;
 	return (1);
