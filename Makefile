@@ -6,13 +6,12 @@
 #    By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/27 19:00:55 by tsito             #+#    #+#              #
-#    Updated: 2026/05/18 18:08:00 by tsito            ###   ########.fr        #
+#    Updated: 2026/05/21 20:06:51 by tsito            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= push_swap
 
-CC			:= cc
 CFLAGS		:= -Wall -Wextra -Werror
 
 LIBFTDIR	:= libft
